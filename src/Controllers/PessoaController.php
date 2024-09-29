@@ -78,21 +78,26 @@ class PessoaController {
      */
     public function atualizarPessoa($id){
         $nome  = filter_input(INPUT_POST, 'nome',  FILTER_UNSAFE_RAW);
-        $email = filter_input(INPUT_POST, 'email', FILTER_UNSAFE_RAW);
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
-        $pessoa = Pessoa::buscarPessoaEmail($email);
+        $pessoaAtual = Pessoa::buscarPessoaId($id);
         
-        if($pessoa instanceof Pessoa)
-            header('Location: index.php?action=edit&id='.$id.'&error=Já existe um usuário com este e-mail.');
-        else{
-            $obPessoa = new Pessoa();
-            $obPessoa->id    = $id;
-            $obPessoa->nome  = $nome;
-            $obPessoa->email = $email;
-            $obPessoa->atualizarPessoa();
-
-            header('Location: index.php?action=index&success=Usuário atualizado com sucesso.');
+        if($pessoaAtual->email !== $email){
+            $pessoaComEmail = Pessoa::buscarPessoaEmail($email);
+            if($pessoaComEmail instanceof Pessoa){
+                header('Location: index.php?action=edit&id='.$id.'&error=Já existe um usuário com este e-mail.');
+                exit; // Adicionar exit após o redirecionamento
+            }
         }
+        
+        $obPessoa = new Pessoa();
+        $obPessoa->id    = $id;
+        $obPessoa->nome  = $nome;
+        $obPessoa->email = $email;
+        $obPessoa->atualizarPessoa();
+    
+        header('Location: index.php?action=index&success=Usuário atualizado com sucesso.');
+        exit; // Adicionar exit após o redirecionamento
     }
     
     /**
