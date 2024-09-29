@@ -1,0 +1,22 @@
+
+/* Importação da fonte Ubuntu*/
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&display=swap');
+
+/* Configuração de fonte padrão para todo o sistema*/
+*{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+}
+
+/* Configuração da altura maxima da tabela */
+.table-wrap{
+    height: 75vh;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+/* Configuração para definir o cabeçalho fixo ao fazer o scroll vertical*/
+thead th {
+    position: sticky;
+    top: 0;
+}
