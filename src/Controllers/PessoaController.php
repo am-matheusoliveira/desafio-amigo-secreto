@@ -45,7 +45,7 @@ class PessoaController {
      */
     public function cadastrarPessoa(){
         $nome  = filter_input(INPUT_POST, 'nome',  FILTER_UNSAFE_RAW);
-        $email = filter_input(INPUT_POST, 'email', FILTER_UNSAFE_RAW);
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
         $pessoa = Pessoa::buscarPessoaEmail($email);
         
