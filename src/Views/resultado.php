@@ -2,13 +2,13 @@
 
 <div class="row d-flex justify-content-between align-items-center my-2">
     
-    <div class="col-auto p-0">
+    <div class="col-auto">
         <a href="index.php" class="shadow-none btn-smshadow-none btn btn-primary">
             <i class="fa-solid fa-arrow-left"></i> Retornar
         </a>
     </div>
 
-    <div class="col-md-10 p-0">
+    <div class="col-md-10">
         <h1>Resultado do Sorteio</h1>
     </div>
 </div>
